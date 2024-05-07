@@ -1,0 +1,26 @@
+[package]
+name = "sidecar-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+objc2 = "*"
+objc2-foundation = { version = "*", features = [
+    "NSArray",
+    "NSEnumerator",
+    "NSString",
+] }
+block2 = "*"
+libloading = "*"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+panic = "abort"
+opt-level = 3
+strip = "symbols"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
